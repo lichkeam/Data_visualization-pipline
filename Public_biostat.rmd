@@ -1,0 +1,140 @@
+---
+title: "Template"
+author: "Tony"
+date: "2021/10/23"
+
+abstract:
+
+  Data visualization and Statistical analysis
+
+
+---
+#1. knitr setting
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+
+#2. Source and package
+```{r, echo = F, include = F}
+source("C://Users/tonyhsu/Desktop/?ͲΤ???/Public_biostat_function.R")
+biopub_stat.requirement()
+#loadfonts(device = "win")
+options(dplyr.summarise.inform = FALSE)
+STIME = Sys.time()
+loadfonts()
+
+```
+
+
+
+#3. Read data and output setting
+```{r, warning = FALSE}
+#TO DO: give path HERE
+#PATH = "C://Users/tonyhsu/Desktop/Bioinform_Public_Stat/Example_in&out/Example_Input/"
+PATH = "C://Users/tonyhsu/Desktop/?T?`/dupmerge.na.xlsx"
+
+#read data
+data = read_excel(PATH)
+
+#TO DO: give output path HERE
+OUTPUT.PATH = "C://Users/tonyhsu/Desktop/0811???a/10sample_UPCR_case/"
+
+```
+
+
+
+
+#4. Box plot
+```{r}
+Y_type = c("non-responder", "responder", "SD+")#"default" #If order is necessary, please assign the level as c("","",...), and the graph will show this order
+X_cat.len = 0  # ****IMPORTANT**** How many categorical Xs are there
+X_cont.normalized = FALSE
+x.axis.label.rotate = FALSE
+flip = FALSE
+
+
+gplot.box(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH, Y_type_ = Y_type, X_cat.len_ = X_cat.len, X_cont.normalized_ = X_cont.normalized,
+          outlier.remove_ = F, x.axis.label.rotate_ = x.axis.label.rotate, flip_ = flip)
+
+```
+
+
+
+
+#5. Curve
+```{r}
+x.axis.label.rotate = TRUE
+comp = 0 #replacing NAs
+
+
+gplot.curve(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH, comp = 0, x.axis.label.rotate_ = x.axis.label.rotate)
+
+```
+
+
+
+
+#6. Bar plot
+```{r}
+x.axis.label.rotate = FALSE
+comp = 0 #replacing NAs
+flip = FALSE
+
+
+gplot.bar(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH, comp = comp, x.axis.label.rotate = x.axis.label.rotate, flip_ = flip)
+
+```
+
+
+
+
+#7. Descriptive statistics table
+```{r, echo = F, include = F}
+
+descript_stat.table(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH)
+
+```
+
+
+
+
+#8. Test Statistics table
+```{r, echo = F, include = F}
+
+test_stat.table(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH)
+
+```
+
+
+
+
+#9. PCA plot
+```{r}
+scale = TRUE
+cluster = 3
+labelsize = 6
+loading.exist = TRUE
+
+
+PCA.cluster.plot(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH, scale_ = scale, labelsize_ = labelsize, loading.exist_ = loading.exist,
+                 cluster_ = cluster )
+
+```
+
+
+
+
+#10. Hierarchical clustering
+```{r}
+
+hier_clustering(DATA_ = data, OUTPUT.PATH_ = OUTPUT.PATH)
+
+```
+
+
+
